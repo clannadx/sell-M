@@ -1,6 +1,6 @@
 <template>
   <div>
-    我是goods
+    我是goods在家
   </div>
 </template>
 
