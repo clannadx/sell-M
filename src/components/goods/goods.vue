@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
     <div class="goods">
       <div class="menu-wrapper" ref="menuWrapper">
         <ul>
@@ -40,9 +39,6 @@
         </ul>
       </div>
     </div>
-=======
-    我是goods在家
->>>>>>> origin/new
   </div>
 </template>
 
