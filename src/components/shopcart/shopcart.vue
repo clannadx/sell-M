@@ -4,15 +4,15 @@
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'heighlight': totalCount>0 }">
-            <i class="icon-shopping_cart" :class="{'heighlight': totalCount>0 }"></i>
+            <i class="icon-shopping_cart1" :class="{'heighlight': totalCount>0 }"></i>
           </div>
-          <div class="num">{{totalCount}}</div>
+          <div class="num" v-show="totalCount>0">{{totalCount}}</div>
         </div>
         <div class="price" :class="{'heighlight': totalPrice>0 }">¥{{totalPrice}}</div>
         <div class="desc">另需配送费¥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay" :class="payClass">
+        <div class="pay" :class="payClass" @click="clickOn">
           {{payDesc}}
         </div>
       </div>
@@ -75,6 +75,11 @@
           return 'enough'
         }
       }
+    },
+    methods: {
+      clickOn () {
+        alert(this.totalPrice)
+      }
     }
   }
 </script>
@@ -112,7 +117,7 @@
             text-align: center
             &.heighlight
               background-color: rgb(0, 160, 220)
-            .icon-shopping_cart
+            .icon-shopping_cart1
               font-size: 24px
               color: #80858a
               line-height: 44px
