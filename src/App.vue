@@ -56,9 +56,9 @@
       text-align: center
       line-height: 40px
       & > a
-        display: block
         font-size: 14px
         color: rgb(77, 85, 93)
+        line-height: 40px
         &.active
           color: rgb(240, 20, 20)
 
