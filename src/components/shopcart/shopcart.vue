@@ -12,7 +12,7 @@
         <div class="desc">另需配送费¥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right" @click.stop.prevent="clickOn">
-        <div class="pay" :class="payClass" >
+        <div class="pay" :class="payClass">
           {{payDesc}}
         </div>
       </div>
@@ -135,6 +135,9 @@
         this.fold = !this.fold
       },
       clickOn () {
+        if (this.totalPrice < this.minPrice) {
+          return
+        }
         alert(this.totalPrice)
       },
       empty () {
