@@ -4,10 +4,10 @@ import VueResource from 'vue-resource'
 import Goods from '@/components/goods/goods'
 import Seller from '@/components/seller/seller'
 import Ratings from '@/components/ratings/ratings'
+
 Vue.use(Router)
 Vue.use(VueResource)
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',

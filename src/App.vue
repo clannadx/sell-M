@@ -3,13 +3,13 @@
     <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
       <div class="tab-item">
-        <router-link to="/">商品</router-link>
+        <router-link to="/" exact>商品</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/seller">评论</router-link>
+        <router-link to="/ratings">评论</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/ratings">商家</router-link>
+        <router-link to="/seller">商家</router-link>
       </div>
     </div>
     <router-view :seller="seller"/>
@@ -18,24 +18,29 @@
 
 <script type="text/ecmascript-6">
   import header from '@/components/header/header'
-
+  import {urlParse} from '@/assets/js/util'
   const ERR_OK = 0
   export default {
     name: 'app',
     data () {
       return {
-        seller: {}
+        seller: {
+          id: (() => {
+            let queryParam = urlParse()
+            return queryParam.id
+          })()
+        }
       }
     },
     components: {
       'v-header': header
     },
     created () {
-      this.$http.get('/api/seller').then((response) => {
+      this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
         response = response.body
         if (response.errno === ERR_OK) {
-          this.seller = response.data
-//          console.log(this.seller)
+          this.seller = Object.assign({}, this.seller, response.data)    // 给对象扩展属性
+          console.log(this.seller.id)
         }
       })
     }
