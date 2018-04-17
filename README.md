@@ -1,13 +1,8 @@
 # sell
 
 > A Vue.js project <br/><br/>
-一个基于vue的点菜webapp
+一个基于vue的点菜webapp<br/>
+[项目展示](https://clannadx.github.io/sell-M/dist/index.html)
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
 
 
