@@ -13,7 +13,7 @@
       <ratingselect @add1="addIterm" @change1="toggle"  :ratings="ratings" :selectType="selectType" :onlyContent="onlyContent"></ratingselect>
       <div class="rating-wrapper">
         <ul>
-          <li v-for="rating in ratings" v-show="needShow(rating.rateType, rating.text)" class="rating-item">
+          <li v-for="rating in ratings" :key="rating.id" v-show="needShow(rating.rateType, rating.text)" class="rating-item">
             <div class="avatar">
               <img width="28" height="28" :src="rating.avatar">
             </div>
@@ -25,7 +25,7 @@
               <p class="text">{{rating.text}}</p>
               <div class="recommend" v-show="rating.recommend && rating.recommend.length">
                 <span class="icon-thumb_up"></span>
-                <span class="item" v-for="item in rating.recommend">{{item}}</span>
+                <span class="item" v-for="item in rating.recommend" :key="item.id">{{item}}</span>
               </div>
               <div class="time">
                 {{rating.rateTime | formatDate1}}
@@ -46,6 +46,7 @@
 
   const ALL = 2
   const ERR_OK = 0
+  const debug = process.env.NODE_ENV !== 'production'
   export default {
     props: {
       seller: {
@@ -64,7 +65,8 @@
       ratingselect
     },
     created () {
-      this.$http.get('/api/ratings').then((response) => {
+      const url = debug ? '/api/ratings' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/ratings'
+      this.$http.get(url).then((response) => {
         response = response.body
         if (response.errno === ERR_OK) {
           this.ratings = response.data
@@ -191,7 +193,7 @@
             margin: 0 8px 4px 0
             font-size: 9px
           .icon-thumb_up
-            color: rgb(0, 160, 220)
+            color: #ff7200
           .item
             padding: 0 6px
             border: 1px solid rgba(7, 17, 27, 0.1)

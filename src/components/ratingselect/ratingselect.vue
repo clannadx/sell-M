@@ -92,9 +92,9 @@
           &.active
             color: #fff
           &.positive
-            background: rgba(0,160,220,0.2)
+            background: #ffd5b3
             &.active
-              background:rgb(0,160,220)
+              background:#ff7200
           &.negative
             background: rgba(77,85,93,0.2)
             &.active

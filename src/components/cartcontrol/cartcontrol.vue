@@ -47,7 +47,7 @@
         display: inline-block
         line-height: 24px
         font-size: 24px
-        color: rgb(0, 160, 220)
+        color: #eaeaec
         transition: all 0.4s linear
         transform: rotate(0)
       &.move-enter-active, &.move-leave-active
@@ -65,11 +65,11 @@
       line-height: 24px
       text-align: center
       font-size: 10px
-      color: rgb(147, 153, 159)
+      color: #323639
     .cart-add
       display: inline-block
       padding: 6px
       line-height: 24px
       font-size: 24px
-      color: rgb(0, 160, 220)
+      color: #ff7200
 </style>

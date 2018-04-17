@@ -25,7 +25,7 @@
         </div>
         <div class="list-content" ref="listContent">
           <ul>
-            <li class="food" v-for="food in selectFoods">
+            <li class="food" v-for="food in selectFoods" :key="food.id">
               <span class="name">{{food.name}}</span>
               <div class="price">
                 <span class="">¥{{food.price * food.count}}</span>
@@ -188,7 +188,7 @@
             border-radius: 50%
             text-align: center
             &.heighlight
-              background-color: rgb(0, 160, 220)
+              background-color: #ff7200
             .icon-shopping_cart1
               font-size: 24px
               color: #80858a
@@ -209,8 +209,8 @@
             font-size: 9px
             font-weight: 700
             color: #fff
-            background-color: rgb(240, 20, 20)
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4)
+            background-color: #ff2b12
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
         .price
           display: inline-block
           vertical-align: top
@@ -241,7 +241,7 @@
           &.not-enough
             background-color: #2b333b
           &.enough
-            background-color: #00b43c
+            background-color: #ff7200
             color: #fff
     .shopcart-list
       position: absolute
@@ -267,7 +267,7 @@
         .empty
           float: right
           font-size: 12px
-          color: rgb(0, 160, 220)
+          color: #ff7200
       .list-content
         padding: 0 18px
         max-height: 217px

@@ -3,7 +3,7 @@
     <div class="goods">
       <div class="menu-wrapper" ref="menuWrapper">
         <ul>
-          <li v-for="( item, index ) in goods" class="menu-item" :class="{'current' : currentIndex === index }"
+          <li v-for="( item, index ) in goods" :key="item.id" class="menu-item" :class="{'current' : currentIndex === index }"
               @click="selectMenu(index)" ref="menuList">
             <span class="text border-1px">
               <span v-show="item.type>0" class="icon">1</span>
@@ -14,10 +14,10 @@
       </div>
       <div class="food-wrapper" ref="foodsWrapper">
         <ul>
-          <li  v-for="item in goods" class="food-list food-list-hook">
+          <li  v-for="item in goods" :key="item.id" class="food-list food-list-hook">
             <h1 class="title">{{item.name}}</h1>
             <ul>
-              <li @click="selectFood(food,$event)"  v-for="food in item.foods" class="food-item border-1px">
+              <li @click="selectFood(food,$event)"  v-for="food in item.foods" :key="food.id" class="food-item border-1px">
                 <div class="icon">
                   <img width="57" height="57" :src="food.icon" alt="">
                 </div>
@@ -55,7 +55,7 @@
   import Food from '@/components/food/food'
 
   const ERR_OK = 0
-
+  const debug = process.env.NODE_ENV !== 'production'
   export default {
     props: {
       seller: {
@@ -100,7 +100,8 @@
       }
     },
     created () {
-      this.$http.get('/api/goods').then((response) => {
+      const url = debug ? '/api/goods' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/goods'
+      this.$http.get(url).then((response) => {
         response = response.body
         if (response.errno === ERR_OK) {
           this.goods = response.data

@@ -20,6 +20,7 @@
   import header from '@/components/header/header'
   import {urlParse} from '@/assets/js/util'
   const ERR_OK = 0
+  const debug = process.env.NODE_ENV !== 'production'
   export default {
     name: 'app',
     data () {
@@ -36,7 +37,8 @@
       'v-header': header
     },
     created () {
-      this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+      const url = debug ? '/api/seller' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/seller'
+      this.$http.get(url + '?id=' + this.seller.id).then((response) => {
         response = response.body
         if (response.errno === ERR_OK) {
           this.seller = Object.assign({}, this.seller, response.data)    // 给对象扩展属性

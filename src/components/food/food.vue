@@ -37,7 +37,7 @@
           ></ratingselect>
           <div class="rating-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
-              <li v-show="needShow(rating.rateType,rating.text)" v-for="rating in food.ratings" class="rating-item">
+              <li v-show="needShow(rating.rateType,rating.text)" :key="rating.id" v-for="rating in food.ratings" class="rating-item">
                 <div class="user">
                   <span class="name">{{rating.username}}</span>
                   <img :src="rating.avatar" class="avatar" width="12" height="12">
@@ -225,7 +225,7 @@
         border-radius: 12px
         font-size: 10px
         color: #fff
-        background: rgb(0, 160, 220)
+        background: #ff7200
         opacity: 1
         &.fade-enter-active, &.fade-leave-active
           transition: all 0.2s
@@ -285,7 +285,7 @@
               line-height: 16px
               font-size: 12px
             .icon-thumb_up
-              color: rgb(0, 160, 220)
+              color: #ff7200
             .icon-thumb_down
               color: rgb(147, 153, 159)
         .no-rating
