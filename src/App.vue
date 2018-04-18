@@ -33,7 +33,7 @@
             return queryParam.id
           })()
         },
-        loading: false,
+        loading: true,
         resultCode: {
           type: Number
         }
@@ -48,6 +48,7 @@
       this.$http.get(url + '?id=' + this.seller.id).then((response) => {
         response = response.body
         this.resultCode = response.status
+        this.loading = false
         if (response.errno === ERR_OK) {
           this.seller = Object.assign({}, this.seller, response.data)    // 给对象扩展属性
           console.log(this.seller.id)
