@@ -1,13 +1,28 @@
 <template>
-  <div class="ratings">
-    <div class="ratings-content" ref="ratingContent">
+  <div class="ratings" ref="ratingContent">
+    <div class="ratings-content" >
       <div class="overview">
         <div class="overview-left">
           <h1 class="score">{{seller.score}}</h1>
           <div class="title">综合评分</div>
           <div class="rank">高于周边商家{{seller.rankRate}}</div>
         </div>
-        <div class="overview-right"></div>
+        <div class="overview-right">
+          <div class="score-wrapper">
+            <span class="title">服务态度</span>
+            <star :size="36" :score="seller.serviceScore"></star>
+            <span class="score">{{seller.serviceScore}}</span>
+          </div>
+          <div class="score-wrapper">
+            <span class="title">商品评分</span>
+            <star :size="36" :score="seller.foodScore"></star>
+            <span class="score">{{seller.foodScore}}</span>
+          </div>
+          <div class="delivery-wrapper">
+            <span class="title">送达时间</span>
+            <span class="delivery">{{seller.deliveryTime}}分钟</span>
+          </div>          
+        </div>
       </div>
       <split></split>
       <ratingselect @add1="addIterm" @change1="toggle"  :ratings="ratings" :selectType="selectType" :onlyContent="onlyContent"></ratingselect>
@@ -20,6 +35,7 @@
             <div class="content">
               <h1 class="name">{{rating.username}}</h1>
               <div class="star-wrapper">
+                <star :size="24" :score="rating.score"></star>
                 <span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}</span>
               </div>
               <p class="text">{{rating.text}}</p>
@@ -40,6 +56,7 @@
 
 <script>
   import split from '@/components/split/split'
+  import star from '@/components/star/star'
   import ratingselect from '@/components/ratingselect/ratingselect'
   import BScorll from 'better-scroll'
   import {formatDate} from '@/assets/js/data'
@@ -62,7 +79,8 @@
     },
     components: {
       split,
-      ratingselect
+      ratingselect,
+      star
     },
     created () {
       const url = debug ? '/api/ratings' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/ratings'
@@ -145,7 +163,38 @@
           color: rgb(147, 153, 159)
       .overview-right
         flex: 1
-        padding-left: 24px
+        padding: 6px 0 6px 24px
+        @media only screen and (max-width: 320px)
+          padding-left: 6px
+        .score-wrapper
+          margin-bottom: 8px
+          font-size: 0
+          .title
+            display: inline-block
+            line-height: 18px
+            vertical-align: top
+            font-size: 12px
+            color: rgb(7, 17, 27)
+          .star
+            display: inline-block
+            margin: 0 12px
+            vertical-align: top
+          .score
+            display: inline-block
+            line-height: 18px
+            vertical-align: top
+            font-size: 12px
+            color: rgb(255, 153, 0)
+        .delivery-wrapper
+          font-size: 0
+          .title
+            line-height: 18px
+            font-size: 12px
+            color: rgb(7, 17, 27)
+          .delivery
+            margin-left: 12px
+            font-size: 12px
+            color: rgb(147, 153, 159)
     .rating-wrapper
       padding: 0 18px
       .rating-item
