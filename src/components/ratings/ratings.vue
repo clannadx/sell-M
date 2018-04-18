@@ -51,12 +51,14 @@
         </ul>
       </div>
     </div>
+    <loading :seller="seller" :loading="loading" :resultCode="resultCode"></loading>
   </div>
 </template>
 
 <script>
   import split from '@/components/split/split'
   import star from '@/components/star/star'
+  import loading from '@/components/loading/loading'
   import ratingselect from '@/components/ratingselect/ratingselect'
   import BScorll from 'better-scroll'
   import {formatDate} from '@/assets/js/data'
@@ -74,18 +76,25 @@
       return {
         ratings: [],
         selectType: ALL,
-        onlyContent: true
+        onlyContent: true,
+        loading: true,
+        resultCode: {
+          type: Number
+        }
       }
     },
     components: {
       split,
       ratingselect,
-      star
+      star,
+      loading
     },
     created () {
       const url = debug ? '/api/ratings' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/ratings'
       this.$http.get(url).then((response) => {
         response = response.body
+        this.resultCode = response.status
+        this.loading = false
         if (response.errno === ERR_OK) {
           this.ratings = response.data
           this.$nextTick(() => {

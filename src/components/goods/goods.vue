@@ -42,6 +42,7 @@
         </ul>
       </div>
     </div>
+     <loading :seller="seller" :loading="loading" :resultCode="resultCode"></loading>
     <shop-cart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice"
                :min-price="seller.minPrice"></shop-cart>
     <food :food="selectedFood" ref="food"></food>
@@ -51,6 +52,7 @@
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
   import Shopcart from '@/components/shopcart/shopcart'
+  import loading from '@/components/loading/loading'
   import Cartcontrol from '@/components/cartcontrol/cartcontrol'
   import Food from '@/components/food/food'
 
@@ -67,13 +69,18 @@
         goods: [],
         listHeight: [],
         scrollY: 0,
-        selectedFood: {}
+        selectedFood: {},
+        loading: true,
+        resultCode: {
+          type: Number
+        }
       }
     },
     components: {
       Food,
       'shop-cart': Shopcart,
-      'cart-control': Cartcontrol
+      'cart-control': Cartcontrol,
+      loading
     },
     computed: {
       currentIndex () {
@@ -103,6 +110,8 @@
       const url = debug ? '/api/goods' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/goods'
       this.$http.get(url).then((response) => {
         response = response.body
+        this.resultCode = response.status
+        this.loading = false
         if (response.errno === ERR_OK) {
           this.goods = response.data
           this.$nextTick(() => {
