@@ -18,6 +18,7 @@
 <style >
 .loading-wrap {
         text-align: center;
+        padding-top: 125px;
     }
     .loading-text {
         color: #999;
