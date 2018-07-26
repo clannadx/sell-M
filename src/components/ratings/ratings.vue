@@ -90,7 +90,7 @@
       loading
     },
     created () {
-      const url = debug ? '/api/ratings' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/ratings'
+      const url = debug ? '/api/ratings' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/web/ratings'
       this.$http.get(url).then((response) => {
         response = response.body
         this.resultCode = response.status
