@@ -100,7 +100,7 @@
       }
     },
     created () {
-      const url = debug ? '/api/goods' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/goods'
+      const url = debug ? '/api/goods' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/web/goods'
       this.$http.get(url).then((response) => {
         response = response.body
         if (response.errno === ERR_OK) {

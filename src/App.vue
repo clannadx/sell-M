@@ -37,7 +37,7 @@
       'v-header': header
     },
     created () {
-      const url = debug ? '/api/seller' : 'https://easy-mock.com/mock/59c9aed5e0dc663341ba41de/example_1506389717568/seller'
+      const url = debug ? '/api/seller' : 'https://www.easy-mock.com/mock/59c9aed5e0dc663341ba41de/web/seller'
       this.$http.get(url + '?id=' + this.seller.id).then((response) => {
         response = response.body
         if (response.errno === ERR_OK) {
